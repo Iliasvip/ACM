@@ -5,6 +5,11 @@ namespace ACM.BLTest
     [TestClass]
     public class CustomerTest
     {
+        //-- Arrange: Set up the test
+        //-- Act: Access the member being tested
+        //-- Assert: Determine the result
+
+
         [TestMethod]
         public void FullNameTestValid()
         {
@@ -36,6 +41,29 @@ namespace ACM.BLTest
             //-- Act
             string actual = customer.FullName;
 
+            //-- Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void StaticTest()
+        {
+            //-- Arrange 
+            var c1 = new Customer();
+            c1.FirstName = "Bilbo";
+            Customer.InstanceCount += 1;
+
+            var c2 = new Customer();
+            c2.FirstName = "Frodo";
+            Customer.InstanceCount += 1;
+
+            var c3 = new Customer();
+            c3.FirstName = "Rosie";
+            Customer.InstanceCount += 1;
+
+            int expected = 3;
+            //-- Act
+            int actual = Customer.InstanceCount;
             //-- Assert
             Assert.AreEqual(expected, actual);
         }
